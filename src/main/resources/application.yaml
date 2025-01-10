@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: emergencyWardPanels
+
+application:
+  keycloak:
+    url: keycloak-endpoint
+    realm: realm
+    client-id: client-id
+    client-secret: client-secret
+    schedule:
+      refresh-rate: 30000
