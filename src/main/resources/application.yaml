@@ -3,6 +3,10 @@ spring:
     name: emergencyWardPanels
 
 application:
+  backend:
+    host: localhost
+    port: 9091
+    run-over-https: false
   keycloak:
     url: https://localhost:8443/
     realm: test-realm

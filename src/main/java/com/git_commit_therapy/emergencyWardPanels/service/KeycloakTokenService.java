@@ -1,5 +1,6 @@
 package com.git_commit_therapy.emergencyWardPanels.service;
 
+import com.git_commit_therapy.emergencyWardPanels.security.BearerToken;
 import lombok.Getter;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +69,9 @@ public class KeycloakTokenService {
 
         Map<String, Object> responseBody = response.getBody();
         return (String) responseBody.get("access_token");
+    }
+
+    public BearerToken getBearerToken() {
+        return new BearerToken(getJwtToken());
     }
 }
