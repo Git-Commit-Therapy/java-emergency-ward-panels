@@ -4,9 +4,9 @@ spring:
 
 application:
   keycloak:
-    url: keycloak-endpoint
-    realm: realm
-    client-id: client-id
-    client-secret: client-secret
+    url: https://localhost:8443/
+    realm: test-realm
+    client-id: panels-microservice
+    client-secret: z58ctuc2aknkZovjZb0j0bO570lDiAda
     schedule:
       refresh-rate: 30000
