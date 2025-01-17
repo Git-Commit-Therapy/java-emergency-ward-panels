@@ -6,7 +6,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
+import com.git_commit_therapy.emergencyWardPanels.websocket.WebSocketManager;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.client.RestTemplate;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManagerBuilder;
@@ -23,6 +25,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 @EnableScheduling
+@EnableAsync
 @SpringBootApplication
 public class EmergencyWardPanelsApplication {
 
@@ -62,4 +65,10 @@ public class EmergencyWardPanelsApplication {
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(c5);
         return new RestTemplate(factory);
     }
+    /*Create the websocket manager*/
+    @Bean
+    public WebSocketManager webSocketManager() {
+        return new WebSocketManager();
+    }
+
 }

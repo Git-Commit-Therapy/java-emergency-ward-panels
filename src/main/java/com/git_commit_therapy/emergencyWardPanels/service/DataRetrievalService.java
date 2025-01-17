@@ -81,21 +81,36 @@ public class DataRetrievalService {
     }
 
     public EmergencyWardServicesOuterClass.QueueStatusResponse getNeedToBeVisitedStatus() {
-        EmergencyWardPanelsServiceGrpc.EmergencyWardPanelsServiceBlockingStub stub = EmergencyWardPanelsServiceGrpc.newBlockingStub(channel)
+        try{
+            EmergencyWardPanelsServiceGrpc.EmergencyWardPanelsServiceBlockingStub stub = EmergencyWardPanelsServiceGrpc.newBlockingStub(channel)
                 .withCallCredentials(jwtService.getBearerToken());
-        return stub.retrieveNeedToBeVisitedStatus(Empty.getDefaultInstance());
+            return stub.retrieveNeedToBeVisitedStatus(Empty.getDefaultInstance());
+        }catch (Exception e){
+            log.warning("getNeedToBeVisitedStatus exception: " +e.getMessage());
+            return null;
+        }
     }
 
     public EmergencyWardServicesOuterClass.QueueStatusResponse getInVisitingStatus() {
-        EmergencyWardPanelsServiceGrpc.EmergencyWardPanelsServiceBlockingStub stub = EmergencyWardPanelsServiceGrpc.newBlockingStub(channel)
+        try{
+            EmergencyWardPanelsServiceGrpc.EmergencyWardPanelsServiceBlockingStub stub = EmergencyWardPanelsServiceGrpc.newBlockingStub(channel)
                 .withCallCredentials(jwtService.getBearerToken());
-        return stub.retrieveInVisitingStatus(Empty.getDefaultInstance());
+            return stub.retrieveInVisitingStatus(Empty.getDefaultInstance());
+        }catch (Exception e){
+            log.warning("getInVisitingStatus exception: " +e.getMessage());
+            return null;
+        }
     }
 
     public EmergencyWardServicesOuterClass.LastPatientsCalledResponse getLastPatientsCalled() {
-        EmergencyWardPanelsServiceGrpc.EmergencyWardPanelsServiceBlockingStub stub = EmergencyWardPanelsServiceGrpc.newBlockingStub(channel)
-                .withCallCredentials(jwtService.getBearerToken());
-        return stub.retrieveLastPatientsCalled(Empty.getDefaultInstance());
+        try{
+            EmergencyWardPanelsServiceGrpc.EmergencyWardPanelsServiceBlockingStub stub = EmergencyWardPanelsServiceGrpc.newBlockingStub(channel)
+                    .withCallCredentials(jwtService.getBearerToken());
+            return stub.retrieveLastPatientsCalled(Empty.getDefaultInstance());
+        }catch (Exception e){
+            log.warning("getLastPatientsCalled exception: " +e.getMessage());
+            return null;
+        }
     }
 
 }

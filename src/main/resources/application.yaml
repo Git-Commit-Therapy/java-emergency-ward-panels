@@ -3,9 +3,13 @@ spring:
     name: emergencyWardPanels
 
 application:
+  core:
+    task:
+      #In milliseconds
+      send-data-rate: 5000
   backend:
     host: localhost
-    port: 9091
+    port: 9090
     run-over-https: false
   keycloak:
     url: https://localhost:8443/
@@ -13,4 +17,16 @@ application:
     client-id: panels-microservice
     client-secret: z58ctuc2aknkZovjZb0j0bO570lDiAda
     schedule:
+      #In milliseconds
       refresh-rate: 30000
+
+#WebSocket Configuration and protection
+server:
+  port: 10443
+  ssl:
+    enabled: false
+    key-store:classpath: private-key.pem
+    key-store-type: PEM
+    key-alias: aliasName
+    trust-store: classpath:certificate.pem
+    trust-store-type: PEM

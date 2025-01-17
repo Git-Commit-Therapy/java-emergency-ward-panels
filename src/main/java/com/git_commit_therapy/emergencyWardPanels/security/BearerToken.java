@@ -31,9 +31,4 @@ public class BearerToken extends CallCredentials {
             }
         });
     }
-
-    @Override
-    public void thisUsesUnstableApi() {
-        // noop
-    }
 }
