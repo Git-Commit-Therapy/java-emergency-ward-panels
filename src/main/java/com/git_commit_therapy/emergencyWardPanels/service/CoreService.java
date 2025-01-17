@@ -45,7 +45,7 @@ public class CoreService {
         try{
             newMessage.setInVisiting((inVisiting != null)?JsonFormat.printer().print(inVisiting) :"{}");
             newMessage.setNeedToBeVisited((needToBeVisited != null)?JsonFormat.printer().print(needToBeVisited) :"{}");
-            newMessage.setLastPatientsCalled((lastPatientsCalled != null)?JsonFormat.printer().print(lastPatientsCalled) :"[]");
+            newMessage.setLastPatientsCalled((lastPatientsCalled != null)?JsonFormat.printer().includingDefaultValueFields().print(lastPatientsCalled) :"[]");
 
             lastMessage = newMessage;
         }catch (InvalidProtocolBufferException e){
@@ -66,6 +66,12 @@ public class CoreService {
                         } catch (IOException e) {
                             log.warning("Error while sending message to "+session.getRemoteAddress()+". Exception: "+  e.getMessage());
                             throw new RuntimeException(e);
+                        }
+                    }else{
+                        try {
+                            session.close();
+                        } catch (IOException e) {
+                            log.warning("Error while closing session with:"+session.getRemoteAddress()+". Exception: "+  e.getMessage());
                         }
                     }
                 });
